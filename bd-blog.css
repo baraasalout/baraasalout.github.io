@@ -1,0 +1,60 @@
+body {
+    font-family: 'Karla', sans-serif;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.blog-post {
+    margin-bottom: 40px;
+}
+
+.post-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.post-excerpt {
+    font-size: 1rem;
+    color: #555;
+}
+
+.sidebar-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.social-link {
+    font-size: 2rem;
+    margin-right: 15px;
+    color: #555;
+}
+
+.social-link:hover {
+    color: #007bff;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: #777;
+}
+
+.footer-social-links {
+    margin-bottom: 20px;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}

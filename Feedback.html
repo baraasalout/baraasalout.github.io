@@ -164,25 +164,25 @@
 
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbww4z0KIjQP7wASD_mTZBpU53XurFYzDP4mjPpLmTas75WJAI12mpR8XrMZi2NAwWbn8Q/exec';  // بدّل XXXXXXXXXXXXX بالـ URL تبعك
-    const form = document.forms['feedback-form'];
+  const form = document.forms['feedback-form'];
 
     form.addEventListener('submit', e => {
       e.preventDefault();
       const data = new FormData(form);
-
-      fetch(scriptURL, { method: 'POST', body: data })
-        .then(res => {
-          if (res.ok) {
-            alert('✅ تم إرسال رأيك بنجاح!');
-            form.reset();
-          } else {
-            alert('❌ فشل الإرسال، جرب مرة ثانية.');
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert('❌ خطأ بالشبكة.');
-        });
+      fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',      // ← مهم لتجاوز CORS
+        cache: 'no-cache',
+        body: data
+      })
+      .then(() => {
+        alert('✅ تم إرسال رأيك بنجاح!');
+        form.reset();
+      })
+      .catch(err => {
+        console.error(err);
+        alert('❌ فشل الإرسال.');
+      });
     });
   </script>
 

@@ -185,7 +185,7 @@
           .then(res => res.json())
           .then(json => {
             if (json.status === 'success') {
-              msg.textContent = 'شكراً لإبداعك! تم تسجيل ردك بنجاح.';
+              msg.textContent = 'شكراً لك! تم تسجيل ردك بنجاح.';
               form.reset();
             } else {
               msg.textContent = 'عذراً، حدث خطأ حاول مرة أخرى.';

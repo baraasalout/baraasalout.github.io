@@ -71,68 +71,50 @@
   <div class="cards-container" id="cards"></div>
   <div class="msg" id="msg"></div>
 
-  <script>
-    // رابط تصدير CSV من Google Sheets
-    const sheetID = '10cUmuVI1RyP4DfHYEE-AQvJFz6eFAPCpqVZWs-kCs0U'; // استبدلها برقم الشيت
-    const csvURL = `https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv`;
+<script>
+    const apiURL = 'https://script.google.com/macros/s/AKfycbyb4Tz75VdJKrTXrzhYIGrgm3sXXlnlmkoM3Dn6TJ7jpkPjZMYlTN-5J4TR9Juh/exec'; // استبدلها بـ URL للـApps Script
 
-    // دالة لترجمة رقم المتوسط لنجوم (full، half، empty)
-    function renderStars(avg) {
-      const full = Math.floor(avg);
-      const half = (avg - full) >= 0.5 ? 1 : 0;
-      const empty = 5 - full - half;
-      return '★'.repeat(full) + (half ? '⯪' : '') + '☆'.repeat(empty);
-    }
+  fetch(apiURL)
+    .then(res => res.json())
+    .then(rows => {
+      // إذا ما في بيانات
+      if (!rows.length) throw 'ما في فيدباك';
 
-    fetch(csvURL)
-      .then(res => res.text())
-      .then(csv => Papa.parse(csv, { header: true }).data)
-      .then(data => {
-        // فلتر الصفوف الفارغة
-        const rows = data.filter(r => r.rating);
-        if (!rows.length) throw 'لا توجد بيانات';
+      // حساب المتوسطات
+      const avg = field =>
+        rows.reduce((s,r) => s + (+r[field]||0), 0) / rows.length;
+      const avgRating    = avg('rating');
+      const avgSimplify  = avg('simplify_rating');
+      const avgRecommend = avg('recommend_rating');
 
-        // حساب المتوسطات
-        const avg = fields => 
-          (rows.reduce((sum,r) => sum + (+r[fields]||0), 0) / rows.length);
-        const avgRating   = avg('rating');
-        const avgSimplify = avg('simplify_rating');
-        const avgRecommend= avg('recommend_rating');
+      // عرض المتوسطات
+      document.getElementById('averages').innerHTML = `
+        <div>متوسط التقييم العام: ${avgRating.toFixed(2)}</div>
+        <div>متوسط تبسيط الـConcepts: ${avgSimplify.toFixed(2)}</div>
+        <div>متوسط التوصية بالكورس: ${avgRecommend.toFixed(2)}</div>
+      `;
 
-        // عرض المتوسطات
-        document.getElementById('averages').innerHTML = `
-          <div>متوسط التقييم العام: <span class="stars">${renderStars(avgRating)}</span> (${avgRating.toFixed(2)})</div>
-          <div>متوسط تبسيط الـConcepts: <span class="stars">${renderStars(avgSimplify)}</span> (${avgSimplify.toFixed(2)})</div>
-          <div>متوسط التوصية بالكورس: <span class="stars">${renderStars(avgRecommend)}</span> (${avgRecommend.toFixed(2)})</div>
+      // عرض الكروت
+      const container = document.getElementById('cards');
+      rows.forEach(r => {
+        const name = r.name.trim() || 'مجهول';
+        container.innerHTML += `
+          <div class="card">
+            <h3>🎓 ${name}</h3>
+            <p><strong>تقييم عام:</strong> ${r.rating}</p>
+            <p><strong>تبسيط المفاهيم:</strong> ${r.simplify_rating}</p>
+            <p><strong>خبرة المدرب:</strong> ${r.knowledge}</p>
+            <p><strong>الأثر التقني:</strong> ${r.moment}</p>
+            <p><strong>عبارتك المختصرة:</strong> "${r.quote}"</p>
+            <p><strong>ترشيح الكورس:</strong> ${r.recommend_rating}</p>
+          </div>
         `;
-
-        // عرض الكروت
-        const container = document.getElementById('cards');
-        rows.forEach(r => {
-          const name = r.name.trim() || 'مجهول';
-          container.innerHTML += `
-            <div class="card">
-              <h3>🎓 ${name}</h3>
-              <span class="label">تقييم عام:</span>
-              <div class="stars">${renderStars(+r.rating)} (${r.rating})</div>
-              <span class="label">تبسيط الـConcepts:</span>
-              <div class="stars">${renderStars(+r.simplify_rating)} (${r.simplify_rating})</div>
-              <span class="label">خبرة المدرب ونوعية المحتوى:</span>
-              <p>${r.knowledge}</p>
-              <span class="label">أثر براء التقني عليك:</span>
-              <p>${r.moment}</p>
-              <span class="label">عبارتك المختصرة:</span>
-              <p>"${r.quote}"</p>
-              <span class="label">ترشيح الكورس:</span>
-              <div class="stars">${renderStars(+r.recommend_rating)} (${r.recommend_rating})</div>
-            </div>
-          `;
-        });
-      })
-      .catch(err => {
-        document.getElementById('msg').textContent = 'خطأ بتحميل البيانات: ' + err;
       });
-  </script>
+    })
+    .catch(err => {
+      document.getElementById('msg').textContent = 'خطأ بتحميل البيانات: ' + err;
+    });
+</script>
 
 </body>
 </html>

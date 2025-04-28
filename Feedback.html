@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>شاركنا إبداعك!</title>
+  <title>شاركنا رأيك بالمهندس براء!</title>
   <!-- خط Cairo من Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
   <!-- أيقونات النجوم من Font Awesome -->
@@ -103,7 +103,7 @@
 
   <div class="form-container">
     <h2>شاركنا رأيك بالمهندس براء!</h2>
-    <form name="feedback-form">
+    <form id="feedback-form" name="feedback-form">
       <!-- اسم الطالب -->
       <div class="form-group">
         <label for="name">اسمك (اختياري)</label>
@@ -163,26 +163,27 @@
   </div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxFCzcB12sRmDlkfHiEHWPCS39je2Au4uHYdFOkCfwiDsprNJfoKL9v8TetTt13by1HCw/exec';  // بدّل XXXXXXXXXXXXX بالـ URL تبعك
-  const form = document.forms['feedbackform'];
+    // ضع هنا رابط الWeb App من Google Apps Script
+    const scriptURL = 'YOUR_WEB_APP_URL';
 
+    const form = document.getElementById('feedback-form');
     form.addEventListener('submit', e => {
       e.preventDefault();
-      const data = new FormData(form);
-      fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors',      // ← مهم لتجاوز CORS
-        cache: 'no-cache',
-        body: data
-      })
-      .then(() => {
-        alert('✅ تم إرسال رأيك بنجاح!');
-        form.reset();
-      })
-      .catch(err => {
-        console.error(err);
-        alert('❌ فشل الإرسال.');
-      });
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(res => res.json())
+        .then(json => {
+          if (json.status === 'success') {
+            alert('شكراً لإبداعك! تم تسجيل ردك بنجاح.');
+            form.reset();
+          } else {
+            alert('حدث خطأ، الرجاء المحاولة لاحقاً.');
+            console.error(json.message);
+          }
+        })
+        .catch(err => {
+          alert('تعذّر الاتصال بالخادم.');
+          console.error(err);
+        });
     });
   </script>
 

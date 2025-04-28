@@ -17,6 +17,7 @@
       color: #fff;
       padding: 20px;
       text-align: center;
+      direction: rtl;
     }
     h1 { margin-bottom: 20px; }
     .averages {
@@ -60,11 +61,7 @@
   <div id="msg" class="msg"></div>
 
   <script>
-    const sheetID = '10cUmuVI1RyP4DfHYEE-AQvJFz6eFAPCpqVZWs-kCs0U'; // عيّن هنا الـSheet ID
-    const csvURL = `https://docs.google.com/spreadsheets/d/${sheetID}/export?format=csv`;
-    // نستخدم AllOrigins لـCORS
-    const proxyURL = 'https://api.allorigins.win/get?url=' + encodeURIComponent(csvURL);
-
+    // دالة لترجمة رقم المتوسط لنجوم
     function renderStars(avg) {
       const full = Math.floor(avg);
       const half = (avg - full) >= 0.5 ? 1 : 0;
@@ -72,22 +69,23 @@
       return '★'.repeat(full) + (half ? '⯪' : '') + '☆'.repeat(empty);
     }
 
-    fetch(proxyURL)
+    // جلب الـCSV من نفس المجلد
+    fetch('feedback.csv')
       .then(res => {
-        if (!res.ok) throw 'ما قدرنا نوصل للـproxy';
-        return res.json();
+        if (!res.ok) throw new Error('تعذر تحميل ملف feedback.csv');
+        return res.text();
       })
-      .then(json => Papa.parse(json.contents, { header: true }).data)
-      .then(rows => {
-        const data = rows.filter(r => r.rating);
-        if (!data.length) throw 'ما في ردود لعرضها';
+      .then(csvText => {
+        const rows = Papa.parse(csvText, { header: true }).data.filter(r => r.rating);
+        if (!rows.length) throw 'لا توجد بيانات للعرض';
 
         // حساب المتوسطات
-        const avg = field => data.reduce((s,r) => s + (+r[field]||0), 0) / data.length;
+        const avg = field => rows.reduce((sum, r) => sum + (+r[field] || 0), 0) / rows.length;
         const avgRating    = avg('rating');
         const avgSimplify  = avg('simplify_rating');
         const avgRecommend = avg('recommend_rating');
 
+        // عرض المتوسطات
         document.getElementById('averages').innerHTML = `
           <div>متوسط التقييم العام: <span class="stars">${renderStars(avgRating)}</span> (${avgRating.toFixed(2)})</div>
           <div>متوسط تبسيط الـConcepts: <span class="stars">${renderStars(avgSimplify)}</span> (${avgSimplify.toFixed(2)})</div>
@@ -96,7 +94,7 @@
 
         // عرض الكروت
         const container = document.getElementById('cards');
-        data.forEach(r => {
+        rows.forEach(r => {
           const name = r.name.trim() || 'مجهول';
           container.innerHTML += `
             <div class="card">
@@ -107,7 +105,7 @@
               <div class="stars">${renderStars(+r.simplify_rating)} (${r.simplify_rating})</div>
               <span class="label">خبرة المدرب:</span>
               <p>${r.knowledge}</p>
-              <span class="label">أثر براء التقني:</span>
+              <span class="label">الأثر التقني:</span>
               <p>${r.moment}</p>
               <span class="label">عبارتك المختصرة:</span>
               <p>“${r.quote}”</p>

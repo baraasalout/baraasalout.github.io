@@ -94,6 +94,12 @@
       background: linear-gradient(90deg, var(--accent), var(--primary));
       transform: translateY(-2px);
     }
+    .message {
+      margin-top: 12px;
+      text-align: center;
+      font-weight: 600;
+      color: #fff;
+    }
     @media(max-width: 500px) {
       .form-container { padding: 20px; }
     }
@@ -112,7 +118,7 @@
 
       <!-- التقييم العام -->
       <div class="form-group">
-        <label>لو كانت تجربة التدريب مع م.براء لوحة فنية، بأي نجمة بتقييمها؟</label>
+        <label>لو كانت تجربة التدريب مع م. براء لوحة فنية، بأي نجمة بتقييمها؟</label>
         <div class="rating">
           <input type="radio" name="rating" id="star5" value="5"><label for="star5"><i class="fa-solid fa-star"></i></label>
           <input type="radio" name="rating" id="star4" value="4"><label for="star4"><i class="fa-solid fa-star"></i></label>
@@ -148,7 +154,7 @@
 
       <!-- التوصية -->
       <div class="form-group">
-        <label>ما مدى احتمالية أن توصي أصدقائك بالالتحاق بدورات م.براء؟</label>
+        <label>ما مدى احتمالية أن توصي أصدقائك بالالتحاق بدورات م. براء؟</label>
         <div class="rating">
           <input type="radio" name="recommend_rating" id="rec5" value="5"><label for="rec5"><i class="fa-solid fa-star"></i></label>
           <input type="radio" name="recommend_rating" id="rec4" value="4"><label for="rec4"><i class="fa-solid fa-star"></i></label>
@@ -159,32 +165,38 @@
       </div>
 
       <button type="submit" class="btn">أرسل رأيك!</button>
+      <!-- مكان ظهور الرسالة -->
+      <div id="msg" class="message"></div>
     </form>
   </div>
 
   <script>
-    // ضع هنا رابط الWeb App من Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyb4Tz75VdJKrTXrzhYIGrgm3sXXlnlmkoM3Dn6TJ7jpkPjZMYlTN-5J4TR9Juh/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyb4Tz75VdJKrTXrzhYIGrgm3sXXlnlmkoM3Dn6TJ7jpkPjZMYlTN-5J4TR9Juh/exec'; // استبدلها بـ URL للـApps Script
 
-    const form = document.getElementById('feedback-form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(res => res.json())
-        .then(json => {
-          if (json.status === 'success') {
-            alert('شكراً! تم تسجيل ردك بنجاح.');
-            form.reset();
-          } else {
-            alert('حدث خطأ، الرجاء المحاولة لاحقاً.');
-            console.error(json.message);
-          }
-        })
-        .catch(err => {
-          alert('تعذّر الاتصال بالخادم.');
-          console.error(err);
-        });
-    });
+    document
+      .getElementById('feedback-form')
+      .addEventListener('submit', e => {
+        e.preventDefault();
+        const form = e.target;
+        const msg  = document.getElementById('msg');
+        msg.textContent = 'جاري الإرسال...';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(res => res.json())
+          .then(json => {
+            if (json.status === 'success') {
+              msg.textContent = 'شكراً لإبداعك! تم تسجيل ردك بنجاح.';
+              form.reset();
+            } else {
+              msg.textContent = 'عذراً، حدث خطأ حاول مرة أخرى.';
+              console.error(json.message);
+            }
+          })
+          .catch(err => {
+            msg.textContent = 'في مشكلة في الاتصال، يرجى المحاولة لاحقاً.';
+            console.error(err);
+          });
+      });
   </script>
 
 </body>

@@ -8,62 +8,63 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
   <!-- أيقونات النجوم من Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-  <style>
+   <style>
     :root {
-      --primary: #1E3A8A;
-      --accent: #3B82F6;
-      --bg-glass: rgba(255,255,255,0.15);
+      --c1: #9FB3DF;
+      --c2: #9EC6F3;
+      --c3: #BDDDE4;
+      --c4: #FFF1D5;
+      --star: #5A6FA6;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       direction: rtl;
-      min-height: 100vh;
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #3B82F6, #9333EA);
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 33%, var(--c3) 66%, var(--c4) 100%);
       display: flex; align-items: center; justify-content: center;
       padding: 20px;
     }
     .form-container {
-      background: var(--bg-glass);
-      backdrop-filter: blur(12px);
-      padding: 30px;
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255,255,255,0.85);
       border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      max-width: 480px; width: 100%;
-      color: #fff;
+      padding: 30px 25px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
     }
     .form-container h2 {
       text-align: center;
-      font-size: 1.8rem;
       margin-bottom: 20px;
-      color: #fff;
+      font-size: 1.8rem;
+      color: #333;
     }
     .form-group { margin-bottom: 18px; }
     .form-group label {
       display: block;
       margin-bottom: 6px;
       font-weight: 600;
-      color: #eef2ff;
+      color: #333;
     }
     input[type="text"],
     textarea {
       width: 100%;
       padding: 12px;
-      border: none;
+      border: 2px solid transparent;
       border-radius: 8px;
       font-size: 1rem;
-      background: rgba(255,255,255,0.9);
-      color: #333;
-      transition: transform .2s;
+      background: #fff;
+      transition: border-color .2s, transform .2s;
     }
     input:focus, textarea:focus {
-      outline: 2px solid var(--accent);
+      outline: none;
+      border-color: var(--c2);
       transform: scale(1.02);
     }
     textarea { resize: vertical; min-height: 100px; }
     .rating {
-      display: flex; flex-direction: row-reverse;
-      justify-content: flex-end;
+      display: flex; flex-direction: row-reverse; justify-content: flex-end;
     }
     .rating input { display: none; }
     .rating label {
@@ -76,29 +77,30 @@
     .rating label:hover,
     .rating label:hover ~ label,
     .rating input:checked ~ label {
-      color: var(--accent);
+      color: var(--star);
     }
     .btn {
       width: 100%;
       padding: 14px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border: none;
-      border-radius: 8px;
+      margin-top: 10px;
       font-size: 1.1rem;
       font-weight: 600;
       color: #fff;
+      background: linear-gradient(90deg, var(--c2), var(--c3));
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
       transition: background .3s, transform .2s;
     }
     .btn:hover {
-      background: linear-gradient(90deg, var(--accent), var(--primary));
+      background: linear-gradient(90deg, var(--c3), var(--c2));
       transform: translateY(-2px);
     }
     .message {
       margin-top: 12px;
       text-align: center;
       font-weight: 600;
-      color: #fff;
+      color: var(--star);
     }
     @media(max-width: 500px) {
       .form-container { padding: 20px; }

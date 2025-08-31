@@ -1,126 +1,188 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>engbaraa | AI Engineer & Trainer</title>
-  <meta name="description" content="بَرَاء سَلّوط – مهندس ذكاء اصطناعي ومدرّب خبير. خدمات استشارات وتدريب وحلول AI للشركات والطلاب." />
+  <title>engbaraa — AI Engineer & Trainer</title>
+  <meta name="description" content="Baraa Sallout — AI Engineer & Trainer. Practical AI consulting, corporate training, and deployable solutions (NLP, LLMs, MLOps)." />
+  <meta name="theme-color" content="#FFFFFF"/>
+  <meta property="og:title" content="engbaraa — AI Engineer & Trainer"/>
+  <meta property="og:description" content="Practical AI consulting, corporate training, and deployable solutions (NLP, LLMs, MLOps)."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FFDD44'/><text x='50' y='62' font-size='58' text-anchor='middle' font-family='Arial' fill='%23212121'>AI</text></svg>">
 
-  <!-- Bootstrap 5 RTL -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --brand:#ffd000; /* AI yellow accent */
-      --dark:#0e0f12;
-      --muted:#6c757d;
-      --light:#f8f9fa;
-      --card: #111319;
-      --grad: radial-gradient(1200px 600px at 100% -10%, rgba(255,208,0,.15), transparent 40%),
-               radial-gradient(1000px 400px at -10% 110%, rgba(255,208,0,.1), transparent 50%),
-               linear-gradient(180deg, #0a0b0f 0%, #0f1117 60%, #0a0b0f 100%);
-    }
-    body{font-family:"Cairo", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:#0a0b0f; color:#e9ecef;}
-    .navbar{backdrop-filter:saturate(1.2) blur(8px); background:rgba(10,11,15,.6)!important;}
-    .nav-link{color:#e9ecef!important}
-    .btn-brand{background:var(--brand); color:#111; border:0; font-weight:700}
-    .btn-brand:hover{filter:brightness(.95)}
-    .btn-ghost{border:1px solid rgba(255,255,255,.15); color:#e9ecef}
-    .btn-ghost:hover{border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.04)}
+:root {
+  /* الخلفيات والمحايد */
+  --bg: #FFFFFF;          /* أبيض نظيف */
+  --card: #F4F1EA;        /* كريم فاتح دافي */
+  --text: #1E293B;        /* أزرق-رمادي غامق للنصوص */
+  
+  /* الألوان الأرضية المريحة */
+  --muted: #A47864;       /* Mocha Mousse - بُني دافئ شاعر */
+  
+  /* الأزرق العصري */
+  --brand: #1E40AF;       /* Navy Blue غامق احترافي */
+  --brand2: #3B82F6;      /* Royal/Tech Blue لإضافة ديناميكية */
+  
+  /* Accents جريئه */
+  --highlight: #FACC15;   /* أصفر ذهبي جذاب للعناصر المهمة */
+  --special: #BF4AA8;     /* Violet-Pink نابض بالحياة لإبداع جمالي */
+}
+  html{scroll-behavior:smooth}
+    body{font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background:var(--bg); color:var(--text)}
+    .navbar{background:rgba(255,255,255,.9)!important; backdrop-filter:saturate(1.2) blur(8px)}
+    .nav-link{color:var(--text)!important}
+    .btn-brand{background:var(--brand); color:#fff; border:0; font-weight:800}
+    .btn-ghost{border:1px solid rgba(0,0,0,.1); color:var(--text)}
+    .btn-ghost:hover{background:rgba(0,0,0,.05)}
 
     /* Hero */
-    .hero{background:var(--grad);}
-    .hero .badge{background:rgba(255,208,0,.12); color:var(--brand); border:1px solid rgba(255,208,0,.25)}
-    .hero h1{font-weight:800; letter-spacing:.2px}
-    .hero p.lead{color:#adb5bd}
+    .hero{position:relative; background:
+      radial-gradient(1200px 600px at 110% -20%, rgba(167,139,250,.15), transparent 45%),
+      radial-gradient(800px 400px at -10% 120%, rgba(255,221,68,.12), transparent 55%),
+      linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%)
+    }
+    .hero h1{font-weight:800}
+    .badge-soft{background:rgba(167,139,250,.14); color:var(--brand); border:1px solid rgba(167,139,250,.3)}
+/* Social-proof logos */
+.logo-row img{
+  height:80px; width:auto;
+  opacity:.85; filter:grayscale(20%);
+  transition:opacity .2s ease, filter .2s ease
+}
+.logo-row img:hover{opacity:1; filter:none}
 
     /* Cards */
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.05);}
-    .card .bi{font-size:1.6rem; color:var(--brand)}
+    .card{background:var(--card); border:1px solid rgba(0,0,0,.06)}
+    .card .bi{font-size:1.5rem; color:var(--brand)}
 
-    /* Section headings */
-    .section-title{font-weight:800}
-    .section-sub{color:#adb5bd}
+    .section-title{font-weight:800; color:var(--highlight)}
+    .section-sub{color:var(--muted)}
 
-    /* Portfolio */
     .portfolio-item{position:relative; overflow:hidden; border-radius:1rem}
     .portfolio-item img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease}
     .portfolio-item:hover img{transform:scale(1.05)}
-    .portfolio-badge{position:absolute; top:.75rem; inset-inline-start:.75rem; background:rgba(0,0,0,.55); padding:.25rem .6rem; border-radius:.6rem; font-size:.85rem}
+    .portfolio-badge{position:absolute; top:.75rem; left:.75rem; background:rgba(0,0,0,.55); padding:.25rem .6rem; border-radius:.6rem; font-size:.85rem; color:#fff}
 
-    /* Footer */
-    footer a{color:#adb5bd; text-decoration:none}
-    footer a:hover{color:#fff}
+    .stack-badge{background:#f5f3ff; border:1px solid rgba(0,0,0,.06); color:var(--text)}
 
-    /* Smooth anchors */
-    html{scroll-behavior:smooth}
+    footer a{color:var(--muted); text-decoration:none}
+    footer a:hover{color:var(--highlight)}
   </style>
+  <!-- JSON-LD: Person schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Baraa Sallout",
+    "url": "https://engbaraa.com/",
+    "jobTitle": "AI Engineer & Trainer",
+    "sameAs": [
+      "https://www.linkedin.com/in/baraasallout",
+      "https://github.com/baraasalout"
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top border-bottom border-opacity-10 border-white">
+  <nav class="navbar navbar-expand-lg fixed-top border-bottom border-secondary border-opacity-25">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <span class="fw-bold">eng<span style="color:var(--brand)">AI</span> • بَرَاء</span>
+      <a class="navbar-brand fw-bold" href="#">
+        <span>Eng: <span style="color:var(--brand)">Baraa</span> Abu Sallout</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#services">الخدمات</a></li>
-          <li class="nav-item"><a class="nav-link" href="#work">الأعمال</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">عنّي</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">تواصل</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero pt-7 pb-5" style="padding-top:7rem">
-    <div class="container">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <span class="badge rounded-pill mb-3"><i class="bi bi-stars me-1"></i> AI • Training • Consulting</span>
-          <h1 class="display-5 mb-3">بَرَاء سَلّوط — <span style="color:var(--brand)">AI Engineer & Trainer</span></h1>
-          <p class="lead mb-4">بساعد الشركات والطلاب يحوّلوا الأفكار لمنتجات وخدمات ذكية باستخدام الذكاء الاصطناعي. تدريبات عملية، استشارات، وحلول جاهزة للنشر.</p>
-          <div class="d-flex gap-2 flex-wrap">
-            <a href="#contact" class="btn btn-brand btn-lg"><i class="bi bi-rocket-takeoff ms-1"></i> احجز استشارة</a>
-            <a href="#services" class="btn btn-ghost btn-lg"><i class="bi bi-grid-3x3-gap me-1"></i> تصفّح الخدمات</a>
-          </div>
-          <div class="mt-4 text-muted small">موثوق من <span class="text-white">طلبة ومهنيين</span> عبر الوطن العربي • ورش وشهادات عملية</div>
+<!-- Hero -->
+<header class="hero pt-7" style="padding-top:4rem">
+  <div class="container py-5">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+
+        <!-- Intro Badge -->
+        <span class="badge badge-soft rounded-pill mb-3">
+          <i class="bi bi-stars me-1"></i> Data Scientist • AI Solutions Engineer • Expert Trainer • Daturial CTO
+        </span>
+
+        <!-- Name -->
+        <h1 class="display-5 fw-bold mb-5">
+          I'm <span style="color:var(--brand)">Baraa Abu Sallout</span>
+        </h1>
+
+        <!-- Main Tagline -->
+        <h2 class="h2 fw-normal mb-4 text-muted">
+         I design and deliver <span style="color:var(--brand)">AI solutions</span> that work in the real world —  
+          and empower teams to do the same.
+        </h2>
+
+        <!-- Subheading -->
+        <p class="lead section-sub mb-4">
+          AI consulting, hands-on training, and deployable solutions for startups and enterprises.  
+          From problem framing to data pipelines, model design, evaluation, and production rollout.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex flex-wrap gap-2">
+          <a href="https://calendly.com/baraasallout/ai-1to1-mentoring" class="btn btn-brand btn-lg">
+            <i class="bi bi-rocket-takeoff me-1"></i> Book a Consult
+          </a>
+           <!--  <a href="#work" class="btn btn-ghost btn-lg">
+            <i class="bi bi-briefcase me-1"></i> See Case Studies
+          </a> -->
+
         </div>
+
+        <!-- Trust Note -->
+        <div class="mt-4 small text-muted">
+          Trusted by learners & teams across MENA • Real-world workshops • End-to-end deployments
+        </div>
+
+      </div>
         <div class="col-lg-5">
-          <div class="card shadow-lg border-0">
+          <div class="card shadow border-0">
             <div class="card-body p-4">
-              <h5 class="mb-3 fw-bold">ماذا أقدّم؟</h5>
+              <h5 class="fw-bold mb-3">What I do</h5>
               <div class="d-grid gap-3">
                 <div class="d-flex align-items-start gap-3">
                   <i class="bi bi-cpu"></i>
                   <div>
-                    <div class="fw-semibold">حلول ذكاء اصطناعي للشركات</div>
-                    <div class="text-secondary">تحليل المتطلبات، تصميم النموذج، نشره (API/Cloud/Edge).</div>
+                    <div class="fw-semibold">AI Solutions for Business</div>
+                    <div class="text-muted">NLP & LLM apps, recommenders, chatbots, analytics dashboards; API/web app deployment.</div>
                   </div>
                 </div>
                 <div class="d-flex align-items-start gap-3">
                   <i class="bi bi-mortarboard"></i>
                   <div>
-                    <div class="fw-semibold">تدريب احترافي</div>
-                    <div class="text-secondary">Bootcamps وWorkshops في ML, NLP, MLOps مع مشاريع واقعية.</div>
+                    <div class="fw-semibold">Professional Training</div>
+                    <div class="text-muted">Bootcamps & workshops in Python, ML, NLP, and MLOps with project‑based learning.</div>
                   </div>
                 </div>
                 <div class="d-flex align-items-start gap-3">
-                  <i class="bi bi-kanban"></i>
+                  <i class="bi bi-shield-check"></i>
                   <div>
-                    <div class="fw-semibold">الاستشارات والتقييم</div>
-                    <div class="text-secondary">مراجعة حلول، تحسين الأداء، Roadmaps لتبنّي الـ AI.</div>
+                    <div class="fw-semibold">Reviews & Audits</div>
+                    <div class="text-muted">Code/data audits, performance tuning, and adoption roadmaps tailored to your product.</div>
                   </div>
                 </div>
               </div>
@@ -129,275 +191,99 @@
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Logos / Social proof (optional) -->
-  <section class="py-4 border-top border-bottom border-opacity-10 border-white">
-    <div class="container text-center">
-      <div class="row gy-3 align-items-center justify-content-center opacity-75">
-        <div class="col-auto small">شركات وبرامج تعاونت معها</div>
-        <div class="col-auto fw-bold">AMIT Learning</div>
-        <div class="col-auto fw-bold">DEPI</div>
-        <div class="col-auto fw-bold">RoaaD Misr</div>
-        <div class="col-auto fw-bold">Startups</div>
+<section class="py-4 border-top border-bottom border-secondary border-opacity-25">
+  <div class="container text-center">
+    <div class="row gy-3 justify-content-center align-items-center logo-row">
+      <div class="col-12 small text-muted">Trusted By Leading Programs & Companies</div>
+
+      <!-- AMIT Learning -->
+   <div class="col-auto">
+        <img src="4.jpg" alt="Daturial" loading="lazy">
+      </div>
+
+      <div class="col-auto">
+        <img src="2.png" alt="AMIT Learning logo" loading="lazy">
+      </div>
+
+      <!-- DEPI -->
+      <div class="col-auto">
+        <img src="1.png" alt="DEPI program logo" loading="lazy">
+      </div>
+  <!-- Startups (generic) -->
+      <div class="col-auto">
+        <img src="7.png" alt="smeportals" loading="lazy">
+      </div>
+
+      <!-- RoaaD Misr -->
+      <div class="col-auto">
+        <img src="3.png" alt="Epsilon Ai Academy" loading="lazy">
+      </div>
+  <!-- RoaaD Misr -->
+      <div class="col-auto">
+        <img src="5.png" alt="pallife" loading="lazy">
+      </div>
+      <!-- Startups (generic) -->
+      <div class="col-auto">
+        <img src="6.png" alt="GSG" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- About -->
+<section id="about" class="py-6 border-top border-secondary border-opacity-25">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <!-- Text Section -->
+      <div class="col-lg-6">
+        <h2 class="section-title mb-3">About Me</h2>
+        <p class="section-sub mb-4">
+          AI Engineer & Expert Trainer. I design and deliver hands-on AI solutions, 
+          blending technical expertise with practical training. 
+          My mission is to empower professionals and businesses to adopt AI effectively — 
+          from research to real-world deployments.
+        </p>
+        <div class="row g-3 small text-muted">
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> 14+ AI/DS courses delivered</div>
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> 190+ professionals trained</div>
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> NLP & LLMs (BERT, GPT, Hybrid Models)</div>
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> Deployments: Cloud & Edge devices</div>
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> Master’s Research: Arabic Sentiment Analysis</div>
+          <div class="col-sm-6"><i class="bi bi-check2-circle me-1 text-warning"></i> AI Solutions Consultant for businesses</div>
+        </div>
+      </div>
+      <!-- Image Section -->
+      <div class="col-lg-6">
+        <div class="ratio ratio-16x9 rounded shadow-sm" style="overflow:hidden">
+          <img 
+            src="42.jpg" 
+            alt="Baraa Abu Sallout working on an AI project" 
+            class="w-100 h-100 object-fit-cover"/>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="py-6">
+  </div>
+</section>
+<br><br>
+  <!-- CTA band -->
+  <section class="py-5 border-top border-bottom border-secondary border-opacity-25 text-center">
     <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-title">الخدمات</h2>
-        <p class="section-sub">اختر الباقة الأنسب لإحتياجك — تدريب، استشارات، أو بناء حلول متكاملة</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center mb-3 gap-2">
-                <i class="bi bi-robot"></i>
-                <h5 class="m-0">AI Solutions</h5>
-              </div>
-              <p class="text-secondary">من الفكرة للنشر: نماذج تصنيف النصوص، توصية منتجات، Chatbots، ولوحات قياس.</p>
-              <ul class="text-secondary small m-0 ps-3">
-                <li>تحليل المتطلبات وتقدير الجهد</li>
-                <li>تجهيز البيانات وبناء النموذج</li>
-                <li>النشر عبر API / Web App / Edge</li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent border-0 p-4 pt-0">
-              <a href="#contact" class="btn btn-sm btn-brand">ابدأ الآن</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center mb-3 gap-2">
-                <i class="bi bi-easel2"></i>
-                <h5 class="m-0">Training & Bootcamps</h5>
-              </div>
-              <p class="text-secondary">مسارات عملية للطلاب والمهنيين: Python, ML, NLP, MLOps مع مشاريع وتقييم.</p>
-              <ul class="text-secondary small m-0 ps-3">
-                <li>مناهج مبسطة + أمثلة واقعية</li>
-                <li>تمارين، كويزات، ومشاريع تخرج</li>
-                <li>Mentorship ودعم بعد التدريب</li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent border-0 p-4 pt-0">
-              <a href="#contact" class="btn btn-sm btn-brand">اطلب عرض تدريب</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center mb-3 gap-2">
-                <i class="bi bi-clipboard2-check"></i>
-                <h5 class="m-0">Consulting & Audits</h5>
-              </div>
-              <p class="text-secondary">تقييم حلول حالية، تحسين الأداء، وخارطة طريق لتبنّي الذكاء الاصطناعي في شركتك.</p>
-              <ul class="text-secondary small m-0 ps-3">
-                <li>Code/Data Review</li>
-                <li>MVP Roadmap</li>
-                <li>تكامل مع منتجك الحالي</li>
-              </ul>
-            </div>
-            <div class="card-footer bg-transparent border-0 p-4 pt-0">
-              <a href="#contact" class="btn btn-sm btn-brand">احجز جلسة</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3 class="mb-3">Ready to explore an AI initiative?</h3>
+      <p class="section-sub mb-4">Tell me about your use‑case. I’ll reply within 24 hours with next steps.</p>
+      <a href="https://calendly.com/baraasallout/ai-1to1-mentoring" class="btn btn-brand btn-lg"><i class="bi bi-calendar-check me-1"></i> Book a quick call</a>
     </div>
   </section>
-
-  <!-- Selected Work / Portfolio -->
-  <section id="work" class="py-6 border-top border-opacity-10 border-white">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-title">نماذج أعمال</h2>
-        <p class="section-sub">مشاريع مختارة — روابط حيّة وGitHub</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item ratio ratio-4x3">
-            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Project"/>
-            <span class="portfolio-badge">NLP • Sentiment</span>
-          </div>
-          <div class="mt-3 d-flex justify-content-between align-items-center">
-            <div>
-              <div class="fw-semibold">Arabic Reviews Classifier</div>
-              <div class="small text-secondary">BERT + XGBoost • Demo & Code</div>
-            </div>
-            <div class="d-flex gap-2">
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-box-arrow-up-right"></i></a>
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-github"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item ratio ratio-4x3">
-            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Project"/>
-            <span class="portfolio-badge">MLOps • Streamlit</span>
-          </div>
-          <div class="mt-3 d-flex justify-content-between align-items-center">
-            <div>
-              <div class="fw-semibold">AI App – Product Recommender</div>
-              <div class="small text-secondary">Streamlit + FastAPI • Cloud</div>
-            </div>
-            <div class="d-flex gap-2">
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-box-arrow-up-right"></i></a>
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-github"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="portfolio-item ratio ratio-4x3">
-            <img src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=1200&auto=format&fit=crop" alt="Project"/>
-            <span class="portfolio-badge">LLM • Chatbot</span>
-          </div>
-          <div class="mt-3 d-flex justify-content-between align-items-center">
-            <div>
-              <div class="fw-semibold">Docs Q&A Chatbot</div>
-              <div class="small text-secondary">RAG • Azure/OpenAI • Demo</div>
-            </div>
-            <div class="d-flex gap-2">
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-box-arrow-up-right"></i></a>
-              <a class="btn btn-ghost btn-sm" href="#"><i class="bi bi-github"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-6">
-    <div class="container">
-      <div class="row g-5 align-items-center">
-        <div class="col-lg-6">
-          <h2 class="section-title mb-3">عنّي</h2>
-          <p class="section-sub mb-4">مدرّب خبير ومهندس ذكاء اصطناعي. درّبت مئات الطلاب والمهنيين عبر المنطقة، وبنيت حلول عملية للشركات والناشئة.</p>
-          <div class="row g-3 small text-secondary">
-            <div class="col-sm-6"><i class="bi bi-check-circle me-1 text-success"></i> 10+ مسارات تدريبية</div>
-            <div class="col-sm-6"><i class="bi bi-check-circle me-1 text-success"></i> 190+ طالب محترف</div>
-            <div class="col-sm-6"><i class="bi bi-check-circle me-1 text-success"></i> NLP & MLOps</div>
-            <div class="col-sm-6"><i class="bi bi-check-circle me-1 text-success"></i> Deployments: Cloud/Edge</div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="ratio ratio-16x9 rounded" style="overflow:hidden">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" alt="About Baraa" class="w-100 h-100 object-fit-cover"/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials / Social Proof -->
-  <section class="py-6 border-top border-opacity-10 border-white">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-title">ماذا قالوا؟</h2>
-        <p class="section-sub">آراء مختصرة من متدرّبين وشركاء</p>
-      </div>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <p class="mb-3">"ورشة الـ NLP كانت عملية جدًا—طلعنا بمشروع شغال ونشرناه على Streamlit. التقييم مستمر بعد التدريب."</p>
-              <div class="small text-secondary">متدرّبة – Data Science</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <p class="mb-3">"ساعدنا يبني Recommender System بسيط زاد التحويل 12%. كان فيه Mentorship واضح وخطوات نشر."</p>
-              <div class="small text-secondary">شركة ناشئة – E‑commerce</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <p class="mb-3">"شرح بسيط ومباشر، مع أمثلة من الشغل الحقيقي. نصائح بمرحلة تنظيف البيانات فرقت معنا كتير."</p>
-              <div class="small text-secondary">مهندس بيانات – Bootcamp</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-6">
-    <div class="container">
-      <div class="row g-4 align-items-start">
-        <div class="col-lg-6">
-          <h2 class="section-title mb-3">تواصل</h2>
-          <p class="section-sub mb-4">احكيلي عن مشروعك أو احتياجك التدريبي—برد عليك خلال 24 ساعة.</p>
-          <form class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label">الاسم</label>
-              <input type="text" class="form-control" placeholder="اسمك الكامل">
-            </div>
-            <div class="col-md-6">
-              <label class="form-label">الإيميل</label>
-              <input type="email" class="form-control" placeholder="you@company.com">
-            </div>
-            <div class="col-12">
-              <label class="form-label">الموضوع</label>
-              <input type="text" class="form-control" placeholder="استشارة / تدريب / حل AI">
-            </div>
-            <div class="col-12">
-              <label class="form-label">الرسالة</label>
-              <textarea class="form-control" rows="5" placeholder="وصف مختصر عن طلبك"></textarea>
-            </div>
-            <div class="col-12 d-flex gap-2">
-              <button type="submit" class="btn btn-brand">أرسل الطلب</button>
-              <a class="btn btn-ghost" href="mailto:contact@engbaraa.com"><i class="bi bi-envelope-at me-1"></i> contact@engbaraa.com</a>
-            </div>
-            <div class="form-text">*ملاحظة: هذا النموذج واجهة فقط—اربطه بخدمة مثل Formspree أو Netlify Forms.</div>
-          </form>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100">
-            <div class="card-body p-4">
-              <h5 class="fw-bold mb-3">معلومات سريعة</h5>
-              <ul class="list-unstyled m-0 small text-secondary">
-                <li class="mb-2"><i class="bi bi-geo-alt me-1 text-warning"></i> القاهرة، مصر (UTC+2/3)</li>
-                <li class="mb-2"><i class="bi bi-linkedin me-1 text-warning"></i> linkedin.com/in/baraasallout</li>
-                <li class="mb-2"><i class="bi bi-github me-1 text-warning"></i> github.com/baraasalout</li>
-                <li class="mb-2"><i class="bi bi-globe me-1 text-warning"></i> engbaraa.com</li>
-              </ul>
-              <hr class="border-secondary border-opacity-25">
-              <h6 class="fw-bold mb-2">الاختصاصات</h6>
-              <div class="d-flex flex-wrap gap-2">
-                <span class="badge bg-dark border">NLP</span>
-                <span class="badge bg-dark border">LLMs</span>
-                <span class="badge bg-dark border">MLOps</span>
-                <span class="badge bg-dark border">Streamlit</span>
-                <span class="badge bg-dark border">FastAPI</span>
-                <span class="badge bg-dark border">Azure/GCP</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+ 
   <!-- Footer -->
-  <footer class="py-4 border-top border-opacity-10 border-white">
+  <footer class="py-4 border-top border-secondary border-opacity-25">
     <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-      <div class="small text-secondary">© <span id="year"></span> engbaraa — جميع الحقوق محفوظة</div>
+      <div class="small text-muted">© <span id="year"></span> engbaraa — All rights reserved</div>
       <div class="d-flex gap-3">
-        <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        <a href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
-        <a href="#" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/baraasallout/" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="baraasallout@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
       </div>
     </div>
   </footer>
@@ -405,6 +291,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
